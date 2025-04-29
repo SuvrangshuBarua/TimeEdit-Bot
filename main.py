@@ -9,7 +9,7 @@ from selenium.common.exceptions import TimeoutException, ElementNotInteractableE
 
 def timeedit_chalmers(driver, courses):
     try:
-        element = WebDriverWait(driver, 5).until(
+        element = WebDriverWait(driver, 2).until(
             EC.presence_of_element_located((By.CSS_SELECTOR, ".leftlistcolumn > a:last-child"))
         )
         element.click()
@@ -17,7 +17,7 @@ def timeedit_chalmers(driver, courses):
         for course in courses:
             search_course(driver, course)
 
-        objectbasketgo_button = WebDriverWait(driver, 10).until(
+        objectbasketgo_button = WebDriverWait(driver, 2).until(
             EC.element_to_be_clickable((By.ID, "objectbasketgo"))
         )
         objectbasketgo_button.click()
@@ -29,7 +29,7 @@ def timeedit_chalmers(driver, courses):
     
 def search_course(driver, course):
     try:
-        search_box = WebDriverWait(driver, 5).until(
+        search_box = WebDriverWait(driver, 2).until(
             EC.presence_of_element_located((By.ID, "ffsearchname"))
         )
         search_box.click()
@@ -37,14 +37,14 @@ def search_course(driver, course):
         search_box.send_keys(course + Keys.ENTER)
         print("Found course:", course)
 
-        add_all_button = course_item = WebDriverWait(driver, 5).until(
+        add_all_button = course_item = WebDriverWait(driver, 2).until(
             EC.presence_of_element_located((By.XPATH, f"//div[contains(@class, 'clickable2') and contains(normalize-space(), '{course}')]"))
         )
         add_all_button.click()
 
         print("Added course:", course)
 
-        WebDriverWait(driver, 5).until(
+        WebDriverWait(driver, 2).until(
             EC.invisibility_of_element_located((By.XPATH, f"//div[contains(@class, 'clickable2') and contains(normalize-space(), '{course}')]"))
         )
 
