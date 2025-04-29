@@ -16,7 +16,6 @@ def timeedit_chalmers(driver, courses):
         print("Clicked on Chalmers University of Technology link.")
         for course in courses:
             search_course(driver, course)
-            time.sleep(2)
 
         objectbasketgo_button = WebDriverWait(driver, 10).until(
             EC.element_to_be_clickable((By.ID, "objectbasketgo"))
@@ -38,7 +37,7 @@ def search_course(driver, course):
         search_box.send_keys(course + Keys.ENTER)
         print("Found course:", course)
 
-        add_all_button = course_item = WebDriverWait(driver, 10).until(
+        add_all_button = course_item = WebDriverWait(driver, 5).until(
             EC.presence_of_element_located((By.XPATH, f"//div[contains(@class, 'clickable2') and contains(normalize-space(), '{course}')]"))
         )
         add_all_button.click()
@@ -64,6 +63,9 @@ try:
     driver.get("https://cloud.timeedit.net/chalmers/web/public/")
     timeedit_chalmers(driver, courses)
 finally:
+    # Take a screenshot before closing the driver
+    driver.save_screenshot("final_result.png")
+    print("Screenshot saved as final_result.png")
     time.sleep(10)
     driver.quit()
     print("Driver closed successfully.")
