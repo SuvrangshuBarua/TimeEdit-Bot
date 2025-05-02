@@ -1,4 +1,4 @@
-# TimeEdit Course Schedule Automation Script
+# TimeEdit-Bot
 
 This is a Python script that uses **Selenium WebDriver** to automate the process of logging into the **Ladok** student portal, extracting registered course codes, and adding their schedules to the **TimeEdit** system used by **Chalmers University of Technology**. The script navigates to the Ladok portal, authenticates the user, retrieves course codes, then interacts with the TimeEdit public interface to add courses to the selection basket and display the final schedule.
 
